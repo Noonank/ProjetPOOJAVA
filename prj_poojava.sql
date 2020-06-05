@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 03 Juin 2020 à 22:05
+-- Généré le :  Ven 05 Juin 2020 à 17:47
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -27,16 +27,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `cours` (
-  `ID_cours` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID_cours`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `cours`
 --
 
-INSERT INTO `cours` (`ID_cours`, `Nom`) VALUES
+INSERT INTO `cours` (`ID`, `Nom`) VALUES
 (1, 'Traitement du signal 2'),
 (2, 'POO Java'),
 (3, 'Anthropologie'),
@@ -77,7 +77,7 @@ INSERT INTO `enseignant` (`ID_utilisateur`, `ID_cours`) VALUES
 
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `ID_utilisateur` int(11) NOT NULL,
-  `Numéro` varchar(255) NOT NULL,
+  `Numero` varchar(255) NOT NULL,
   `ID_groupe` int(11) NOT NULL,
   PRIMARY KEY (`ID_utilisateur`),
   KEY `ID_groupe` (`ID_groupe`)
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 -- Contenu de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`ID_utilisateur`, `Numéro`, `ID_groupe`) VALUES
+INSERT INTO `etudiant` (`ID_utilisateur`, `Numero`, `ID_groupe`) VALUES
 (1, '931800843', 1),
 (5, '931702243', 1),
 (6, '931702066', 6),
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `promotion` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2024 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2025 ;
 
 --
 -- Contenu de la table `promotion`
@@ -157,7 +157,7 @@ INSERT INTO `promotion` (`ID`, `Nom`) VALUES
 CREATE TABLE IF NOT EXISTS `salle` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) NOT NULL,
-  `Capacité` int(11) NOT NULL,
+  `Capacite` int(11) NOT NULL,
   `ID_site` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID_site` (`ID_site`)
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `salle` (
 -- Contenu de la table `salle`
 --
 
-INSERT INTO `salle` (`ID`, `Nom`, `Capacité`, `ID_site`) VALUES
+INSERT INTO `salle` (`ID`, `Nom`, `Capacite`, `ID_site`) VALUES
 (1, 'EM009', 120, 1),
 (2, 'EM010', 120, 1),
 (3, 'P440', 40, 2),
@@ -286,20 +286,20 @@ INSERT INTO `type_cours` (`ID`, `Nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Email` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
-  `Prénom` varchar(255) NOT NULL,
+  `Prenom` varchar(255) NOT NULL,
   `Droit` int(11) NOT NULL,
-  PRIMARY KEY (`ID_utilisateur`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID_utilisateur`, `Email`, `Password`, `Nom`, `Prénom`, `Droit`) VALUES
+INSERT INTO `utilisateur` (`ID`, `Email`, `Password`, `Nom`, `Prenom`, `Droit`) VALUES
 (1, 'noor.kardache@edu.ece.fr', 'noor', 'Kardache', 'Noor', 4),
 (2, 'jean-pierre.segado@ece.fr', 'jps', 'Segado', 'Jean-Pierre', 3),
 (3, 'edt@ece.fr', 'edt', 'Planification', 'ECE', 1),
@@ -326,14 +326,14 @@ INSERT INTO `utilisateur` (`ID_utilisateur`, `Email`, `Password`, `Nom`, `Préno
 -- Contraintes pour la table `enseignant`
 --
 ALTER TABLE `enseignant`
-  ADD CONSTRAINT `ID_utilisateur_enseignant` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateur` (`ID_utilisateur`);
+  ADD CONSTRAINT `ID_utilisateur_enseignant` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateur` (`ID`);
 
 --
 -- Contraintes pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
   ADD CONSTRAINT `ID_groupe_etudiant` FOREIGN KEY (`ID_groupe`) REFERENCES `groupe` (`ID`),
-  ADD CONSTRAINT `ID_utilisateur_etudiant` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateur` (`ID_utilisateur`);
+  ADD CONSTRAINT `ID_utilisateur_etudiant` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateur` (`ID`);
 
 --
 -- Contraintes pour la table `groupe`
