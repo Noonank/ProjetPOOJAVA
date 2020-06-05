@@ -43,7 +43,6 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
      * @param conn
      * @return
-     * @throws SQLException
      */
     @Override
   public int SizeTab(Connection conn){
@@ -84,6 +83,36 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
           result.getString("Nom"),
           result.getString("Prenom"),
           result.getInt("Droit")); }        
+    } catch (SQLException e) {
+    }
+    return utilisateur;
+  }
+  
+    /**
+     *
+     * @param email
+     * @param psw
+     * @return
+     * @throws SQLException
+     */
+    @Override
+  public Utilisateur find(String email,String psw){
+    Utilisateur utilisateur = new Utilisateur();     
+      
+    try {
+        Statement st = this.connect.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+        ResultSet result = st.executeQuery("SELECT * FROM utilisateur WHERE Email = '" + email + "'AND Password = '"+psw +"'");
+        System.out.println(email);
+      while(result.next()){
+        utilisateur = new Utilisateur(
+          result.getInt("ID"),email,psw,
+          result.getString("Nom"),
+          result.getString("Prenom"),
+          result.getInt("Droit")); 
+      }//if{
+          //System.out.println("Votre mail ou votre mot de passe est faut veuillez ressaisir ces informations, merci")  ;}      
     } catch (SQLException e) {
     }
     return utilisateur;

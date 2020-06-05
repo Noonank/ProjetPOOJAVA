@@ -12,6 +12,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import modele.Utilisateur;
 //import com.sdz.connection.SdzConnection;
 
 public abstract class DAO<T> {
@@ -59,6 +60,10 @@ public abstract class DAO<T> {
   public abstract T find(int id);
 
     public int SizeTab(Connection instance) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Utilisateur find(String email, String psw) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
