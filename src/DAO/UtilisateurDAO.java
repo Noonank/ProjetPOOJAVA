@@ -23,19 +23,23 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     super(conn);
   }
   
-
-  @Override
-  public boolean create(Utilisateur obj) {
+  public boolean create(Utilisateur obj, Connection conn) throws SQLException {
+        //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(‘Merkel’, ‘Angela’, ‘angela.merkel@germany.de’) " ;
+        String sql = "INSERT INTO utilisateur(ID,Email,Password,Nom,Prenom,Droit) VALUES ('" + obj.getId()+"','"+ obj.getEmail()+"','"+ obj.getPsw()+"','"+ obj.getNom()+"','"+ obj.getPrenom()+"','"+ obj.getDroit();
+         conn.createStatement().executeUpdate(sql) ;
     return false;
   }
 
-  @Override
-  public boolean delete(Utilisateur obj) {
+  public boolean delete(Utilisateur obj, Connection conn) throws SQLException {
+    String sql = " DELETE FROM utilisateur WHERE nom=’"+ obj.getNom() +"'";
+    conn.createStatement().executeUpdate(sql) ;
+
     return false;
   }
    
-  @Override
-  public boolean update(Utilisateur obj) {
+  public boolean update(Utilisateur obj, Connection conn) throws SQLException {
+    String sql = "UPDATE utilisateur SET Email ='emmanuel.macron@france.fr’ WHERE"+ obj.getId() +"=1";
+    conn.createStatement().executeUpdate(sql) ;
     return false;
   }
   
@@ -93,7 +97,6 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
      * @param email
      * @param psw
      * @return
-     * @throws SQLException
      */
     @Override
   public Utilisateur find(String email,String psw){
@@ -117,4 +120,19 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
     return utilisateur;
   }
+
+    @Override
+    public boolean create(Utilisateur obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Utilisateur obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Utilisateur obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
