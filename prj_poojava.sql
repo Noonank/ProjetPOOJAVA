@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 05 Juin 2020 à 17:47
+-- Généré le :  Sam 06 Juin 2020 à 18:11
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `salle` (
   `ID_site` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID_site` (`ID_site`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `salle`
@@ -173,7 +173,8 @@ INSERT INTO `salle` (`ID`, `Nom`, `Capacite`, `ID_site`) VALUES
 (3, 'P440', 40, 2),
 (4, 'P406', 40, 2),
 (5, 'G002', 80, 3),
-(6, 'G012', 40, 3);
+(6, 'G012', 40, 3),
+(7, 'EM011', 45, 1);
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,14 @@ CREATE TABLE IF NOT EXISTS `seance` (
   PRIMARY KEY (`ID_seance`),
   KEY `ID_type` (`ID_type`),
   KEY `ID_cours` (`ID_cours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `seance`
+--
+
+INSERT INTO `seance` (`ID_seance`, `Semaine`, `Date`, `Heure_debut`, `Heure_fin`, `Etat`, `ID_cours`, `ID_type`) VALUES
+(1, 24, '2020-06-08', '12:00:00', '13:30:00', 1, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -208,6 +216,13 @@ CREATE TABLE IF NOT EXISTS `seance_enseignant` (
   KEY `ID_enseignant` (`ID_enseignant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `seance_enseignant`
+--
+
+INSERT INTO `seance_enseignant` (`ID_seance`, `ID_enseignant`) VALUES
+(1, 16);
+
 -- --------------------------------------------------------
 
 --
@@ -221,6 +236,13 @@ CREATE TABLE IF NOT EXISTS `seance_groupes` (
   KEY `ID_seance` (`ID_seance`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `seance_groupes`
+--
+
+INSERT INTO `seance_groupes` (`ID_seance`, `ID_groupe`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -233,6 +255,13 @@ CREATE TABLE IF NOT EXISTS `seance_salle` (
   KEY `ID_seance` (`ID_seance`),
   KEY `ID_salle` (`ID_salle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `seance_salle`
+--
+
+INSERT INTO `seance_salle` (`ID_seance`, `ID_salle`) VALUES
+(1, 7);
 
 -- --------------------------------------------------------
 
