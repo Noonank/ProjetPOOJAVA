@@ -5,10 +5,23 @@
  */
 package controleur;
 
+import vue.Login;
+
 /**
  *
  * @author noork
  */
 public class EDTcontrol {
     
+    public boolean remplissageEDT(){
+        
+        return false;
+        
+    }
+
+    
+    
+    public static void main(String[] args) {
+         new Login();
+    }
 }

@@ -42,7 +42,7 @@ public class Login extends JFrame implements ActionListener {
     JPasswordField password_text;
     JButton submit, cancel;
 
-    Login() {
+    public Login() {
         
         // User Label
         user_label = new JLabel();
@@ -89,7 +89,7 @@ public class Login extends JFrame implements ActionListener {
         JLabel password_label = new JLabel("Password");
         password_label.setFont(new Font("Tahoma", Font.PLAIN, 13));
         
-        accueil_label = new JLabel("Veuillez vous connecter s'il vous pla\u00EEt");
+        accueil_label = new JLabel("Veuillez vous connecter s'il vous plait");
         accueil_label.setFont(new Font("Tahoma", Font.BOLD, 19));
         GroupLayout gl_panel = new GroupLayout(panel);
         gl_panel.setHorizontalGroup(
@@ -141,7 +141,7 @@ public class Login extends JFrame implements ActionListener {
         
         panel.setLayout(gl_panel);
         
-        setTitle("Veuillez vous connecter s'il vous plaît!");
+        setTitle("Veuillez vous connecter s'il vous plaï¿½t!");
         setSize(600, 300);
         setVisible(true);
 
@@ -169,21 +169,21 @@ public class Login extends JFrame implements ActionListener {
             case 1:
                 message.setText(" Hello admin");
                 this.setVisible(false);
-        EDT chart = new EDT();
+        EDT chartadmin = new EDT();
 	//chart.pack();
-	chart.setVisible(true);
+	chartadmin.setVisible(true);
             case 2: 
                 message.setText(" Hello responsable");
                 this.setVisible(false);
-                Edt_main chart2 = new Edt_main();
+                EDT chartrespo = new EDT();
         //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
 	//chart2.pack();
 	//chart2.setVisible(true);
             case 3: 
                 message.setText(" Hello prof");
                 this.setVisible(false);
-        Edt_main chart3 = new Edt_main();
-        //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+                EDT chartprof = new EDT();
+//Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
 	//chart2.pack();
 	//chart2.setVisible(true);
             case 4:

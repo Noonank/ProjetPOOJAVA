@@ -109,6 +109,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         ResultSet result = st.executeQuery("SELECT * FROM utilisateur WHERE Email = '" + email + "'AND Password = '"+psw +"'");
         System.out.println(email);
       while(result.next()){
+          System.out.println("SELECT * FROM utilisateur WHERE Email = '" +result.getInt("ID") + "'AND Password = '"+psw +"'");
         utilisateur = new Utilisateur(
           result.getInt("ID"),email,psw,
           result.getString("Nom"),
