@@ -24,21 +24,21 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
   }
   
   public boolean create(Utilisateur obj, Connection conn) throws SQLException {
-        //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(â€˜Merkelâ€™, â€˜Angelaâ€™, â€˜angela.merkel@germany.deâ€™) " ;
+        //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(‘Merkel’, ‘Angela’, ‘angela.merkel@germany.de’) " ;
         String sql = "INSERT INTO utilisateur(ID,Email,Password,Nom,Prenom,Droit) VALUES ('" + obj.getId()+"','"+ obj.getEmail()+"','"+ obj.getPsw()+"','"+ obj.getNom()+"','"+ obj.getPrenom()+"','"+ obj.getDroit();
          conn.createStatement().executeUpdate(sql) ;
     return false;
   }
 
   public boolean delete(Utilisateur obj, Connection conn) throws SQLException {
-    String sql = " DELETE FROM utilisateur WHERE nom=â€™"+ obj.getNom() +"'";
+    String sql = " DELETE FROM utilisateur WHERE nom=’"+ obj.getNom() +"'";
     conn.createStatement().executeUpdate(sql) ;
 
     return false;
   }
    
   public boolean update(Utilisateur obj, Connection conn) throws SQLException {
-    String sql = "UPDATE utilisateur SET Email ='emmanuel.macron@france.frâ€™ WHERE"+ obj.getId() +"=1";
+    String sql = "UPDATE utilisateur SET Email ='emmanuel.macron@france.fr’ WHERE"+ obj.getId() +"=1";
     conn.createStatement().executeUpdate(sql) ;
     return false;
   }
@@ -86,7 +86,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
           result.getString("Password"),
           result.getString("Nom"),
           result.getString("Prenom"),
-          result.getInt("Droit")); }        
+          result.getInt("Droit")); }       
     } catch (SQLException e) {
     }
     return utilisateur;
