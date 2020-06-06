@@ -60,6 +60,7 @@ public class EdtConsole{
         String psw = sc.nextLine();
         
         DAO<Utilisateur> UtilisateurDao = new UtilisateurDAO(SdzConnection.getInstance());
+  
         int len = UtilisateurDao.SizeTab(SdzConnection.getInstance());
         Utilisateur util = null ;
         while (util==null){
