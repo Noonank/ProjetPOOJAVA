@@ -16,12 +16,8 @@ import modele.SdzConnection;
  */
 import javax.swing.*;
 //package com.swing.examples;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,18 +27,29 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import modele.SdzConnection;
 import modele.Utilisateur;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Color;
+import java.awt.Font;
 
-public class Login extends JFrame implements ActionListener {
+public class LoginForm extends JFrame implements ActionListener {
 
     JPanel panel;
-    JLabel user_label, password_label, message, accueil_label;
+    JLabel user_label, message;
     JTextField userName_text;
     JPasswordField password_text;
     JButton submit, cancel;
+    private JLabel accueil_label;
 
-    Login() {
+    LoginForm() {
         
         // User Label
         user_label = new JLabel();
@@ -50,11 +57,6 @@ public class Login extends JFrame implements ActionListener {
         user_label.setText("Email");
         userName_text = new JTextField();
         userName_text.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        
-        // Password
-        password_label = new JLabel();
-        password_label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        password_label.setText("Password");
         password_text = new JPasswordField();
         password_text.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
@@ -64,23 +66,11 @@ public class Login extends JFrame implements ActionListener {
 
         panel = new JPanel();
         panel.setBackground(new Color(230, 230, 250));
-        
-        message = new JLabel();
 
-        accueil_label = new JLabel();
-        accueil_label.setFont(new Font("Tahoma", Font.BOLD, 19));
-        
-        panel.add(user_label);
-        panel.add(userName_text);
-        panel.add(password_label);
-        panel.add(password_text);
-        panel.add(message);
-        panel.add(submit);
+        message = new JLabel();
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
-        
-        
         
         // Adding the listeners to components..
         submit.addActionListener(this);
@@ -134,14 +124,8 @@ public class Login extends JFrame implements ActionListener {
         					.addGap(27)
         					.addComponent(submit, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))))
         );
-        
-        
-        submit.addActionListener(this);
-        //add(panel, BorderLayout.CENTER);
-        
         panel.setLayout(gl_panel);
-        
-        setTitle("Veuillez vous connecter s'il vous plaît!");
+        setTitle("Please Login Here !");
         setSize(600, 300);
         setVisible(true);
 
@@ -162,8 +146,9 @@ public class Login extends JFrame implements ActionListener {
         Utilisateur util = null ;
         while (util==null){
          util = UtilisateurDao.find(userName,password);
+         System.out.println("SELECT * FROM utilisateur WHERE Email = '"+util.getId()+"'AND Password = '"+password+"' ");
         }       
-        System.out.println("Utilisateur NÂ°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+        System.out.println("Utilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
         
         switch (util.getDroit()){
             case 1:
@@ -209,5 +194,4 @@ public class Login extends JFrame implements ActionListener {
 
         
     }
-
 }
