@@ -106,31 +106,36 @@ public class Login extends JFrame implements ActionListener {
             case 1:
                 message.setText(" Hello admin");
                 this.setVisible(false);
-        Graphique chart = new Graphique("Emploi du temps ECE Paris 2019/2020",
-		"Emploi du temps ECE Paris 2019/2020");
-	chart.pack();
+        EDT chart = new EDT();
+	//chart.pack();
 	chart.setVisible(true);
             case 2: 
                 message.setText(" Hello responsable");
                 this.setVisible(false);
-        Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020",
-		"Emploi du temps ECE Paris 2019/2020");
-	chart2.pack();
-	chart2.setVisible(true);
+                Edt_main chart2 = new Edt_main();
+        //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+	//chart2.pack();
+	//chart2.setVisible(true);
             case 3: 
                 message.setText(" Hello prof");
                 this.setVisible(false);
-        Graphique chart3 = new Graphique("Emploi du temps ECE Paris 2019/2020",
-		"Emploi du temps ECE Paris 2019/2020");
-	chart3.pack();
-	chart3.setVisible(true);
+        Edt_main chart3 = new Edt_main();
+        //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+	//chart2.pack();
+	//chart2.setVisible(true);
             case 4:
-                message.setText(" Hello eleve");
-                this.setVisible(false);
-        Graphique chart4 = new Graphique("Emploi du temps ECE Paris 2019/2020",
-		"Emploi du temps ECE Paris 2019/2020");
-	chart4.pack();
-	chart4.setVisible(true);
+                message.setText(" Hello eleve "+util.getPrenom());
+                //this.setVisible(false);
+                EDT edtmain = new EDT();
+                edtmain.setVisible(true);
+                        System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+
+                
+                edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                //edtmain.pack();
+        //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+	//chart2.pack();
+	//chart2.setVisible(true);
         }
         
         } catch (ClassNotFoundException ex) {
