@@ -12,30 +12,38 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Site;
+import modele.Utilisateur;
 
 /**
  *
  * @author noork
  */
 public class SiteDAO extends DAO<Site> {
-  public SiteDAO(Connection conn) {
+  public SiteDAO(Connection conn) throws SQLException {
     super(conn);
   }
 
-  @Override
-  public boolean create(Site obj) {
-    return false;
-  }
+ public boolean create(Site obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(‘Merkel’, ‘Angela’, ‘angela.merkel@germany.de’) " ;
+      String sql = "INSERT INTO site(ID_site,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
-  @Override
-  public boolean delete(Site obj) {
-    return false;
-  }
+public boolean delete(Site obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM site WHERE Nom=’"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
 
-  @Override
-  public boolean update(Site obj) {
-    return false;
-  }
+  return false;
+}
+ 
+
+//on associe Eiffel2 quand l'ID du site est 2
+public boolean update(Site obj, Connection conn) throws SQLException {
+  String sql = "UPDATE site SET Nom ='Eiffel2’ WHERE"+ obj.getId() +"=2";
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
   
        /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -81,5 +89,22 @@ public class SiteDAO extends DAO<Site> {
       e.printStackTrace();
     }
     return site;
+  }
+
+
+
+  @Override
+  public boolean create(Site obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean delete(Site obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean update(Site obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 }
