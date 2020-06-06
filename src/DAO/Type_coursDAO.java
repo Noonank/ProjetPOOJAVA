@@ -12,30 +12,37 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Type_cours;
+import modele.Utilisateur;
 
 /**
  *
  * @author noork
  */
 public class Type_coursDAO extends DAO<Type_cours> {
-  public Type_coursDAO(Connection conn) {
+  public Type_coursDAO(Connection conn) throws SQLException {
     super(conn);
   }
 
-  @Override
-  public boolean create(Type_cours obj) {
-    return false;
-  }
+  public boolean create(Type_cours obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(‘Merkel’, ‘Angela’, ‘angela.merkel@germany.de’) " ;
+      String sql = "INSERT INTO type_cours (ID,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
-  @Override
-  public boolean delete(Type_cours obj) {
-    return false;
-  }
+public boolean delete(Type_cours obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM type_cours  WHERE Nom=’"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
 
-  @Override
-  public boolean update(Type_cours obj) {
-    return false;
-  }
+  return false;
+}
+ 
+//ON UPDATE interactif PAR CI Interactif
+public boolean update(Type_cours obj, Connection conn) throws SQLException {
+  String sql = "UPDATE type_cours SET Nom ='CI Cours Interactif’ WHERE"+ obj.getId() +"=1";
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
   
        /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -81,5 +88,22 @@ public class Type_coursDAO extends DAO<Type_cours> {
       e.printStackTrace();
     }
     return cours;
+  }
+  
+  
+
+  @Override
+  public boolean create(Type_cours obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean delete(Type_cours obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean update(Type_cours obj) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 }
