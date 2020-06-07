@@ -22,6 +22,26 @@ public class Seance_salleDAO extends DAO<Seance_salle> {
     super(conn);
   }
 
+    public boolean create(Seance_salle obj, Connection conn) throws SQLException {
+      String sql = "INSERT INTO seance_salle (ID_seance,ID_salle) VALUES ('" + obj.getIdSeance()+"','"+ obj.getIdSalle();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Seance_salle obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM seance_salle  WHERE ID_seance ='"+ obj.getIdSeance() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+public boolean update(Seance_salle obj, Connection conn) throws SQLException {
+//    String sql = "UPDATE seance_salle SET ID_seance ='5' WHERE"+ obj.getIdSeance() +"'";
+	  String sql = "UPDATE seance_salle  SET ID_seance ='5' WHERE"+ obj.getIdSeance();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
   public boolean create(Seance_salle obj) {
     return false;
   }

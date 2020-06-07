@@ -21,6 +21,28 @@ public class CoursDAO extends DAO<Cours> {
   public CoursDAO(Connection conn) {
     super(conn);
   }
+  
+  public boolean create(Cours obj, Connection conn) throws SQLException {
+      String sql = "INSERT INTO cours(ID,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Cours obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM cours WHERE Nom='" + obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+//ON ASSOCIE LE NOM DE DROIT DU TRAVAIL QUAND Nom
+public boolean update(Cours obj, Connection conn) throws SQLException {
+	//String sql = "UPDATE cours SET Nom ='Droit du travail' WHERE"+ obj.getNom + " "();
+	String sql = "UPDATE cours SET Nom ='Droit du travail' WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
 
   @Override
   public boolean create(Cours obj) {

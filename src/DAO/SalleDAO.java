@@ -22,6 +22,29 @@ public class SalleDAO extends DAO<Salle> {
     super(conn);
   }
 
+    public boolean create(Salle obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(ï¿½Merkelï¿½, ï¿½Angelaï¿½, ï¿½angela.merkel@germany.deï¿½) " ;
+      String sql = "INSERT INTO salle(ID,Nom,Capacite,ID_site) VALUES ('" + obj.getId()+"','"+ obj.getNom()+"','"+ obj.getCapacite()+"','"+ obj.getIdSite();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Salle obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM salle WHERE ID_site='"+ obj.getIdSite() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+
+//LA SALLE EST ASSOCIEE AU SITE 1 QUAND ELLE APPARTIENT 
+public boolean update(Salle obj, Connection conn) throws SQLException {
+	//String sql = "UPDATE salle SET Nom ='EM009' WHERE"+ obj.getNom() +"'";
+  String sql = "UPDATE salle SET Nom ='EM009' WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
   public boolean create(Salle obj) {
     return false;
   }

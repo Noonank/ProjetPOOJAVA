@@ -197,10 +197,10 @@ public class Login extends JFrame implements ActionListener {
         }else if (util.getDroit()==4){
             message.setText(" Hello eleve "+util.getPrenom());
                 this.setVisible(false);
-                //EDT edtmain = new EDT(util,conne);
-                //edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
-                //EDTcontrol.remplissageEDT1(util,conne,edtmain);
-                //edtmain.setVisible(true);
+                EDT edtmain = new EDT(util,conne);
+                edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                EDTcontrol.remplissageEDT1(util,conne,edtmain);
+                edtmain.setVisible(true);
                         System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
 
         }

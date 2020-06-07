@@ -55,6 +55,26 @@ public class EtudiantDAO extends DAO<Etudiant> {
     return false;
   }
   
+  public boolean create(Etudiant obj, Connection conn) throws SQLException {
+	  String sql = "INSERT INTO etudiant(ID_utilisateur,Numero,ID_groupe) VALUES ('" + obj.getId()+"','"+ obj.getNum()+"','"+ obj.getid_grp();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+  }
+  
+  public boolean delete(Etudiant obj, Connection conn) throws SQLException {
+	    String sql = "DELETE FROM etudiant WHERE Numero='"+ obj.getNum() +"'";
+	    conn.createStatement().executeUpdate(sql) ;
+	    return false;
+	  	}
+  
+  public boolean update(Etudiant obj, Connection conn) throws SQLException {
+//	    String sql = "UPDATE etudiant SET ID_groupe ='6' WHERE"+ obj.getid_grp() +"'";
+	  String sql = "UPDATE etudiant SET ID_groupe ='6' WHERE"+ obj.getid_grp();
+	    conn.createStatement().executeUpdate(sql) ;
+	    return false;
+  		}
+
+  
        /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
      * @param conn

@@ -21,6 +21,29 @@ public class Type_coursDAO extends DAO<Type_cours> {
   public Type_coursDAO(Connection conn) {
     super(conn);
   }
+  
+  public boolean create(Type_cours obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(ï¿½Merkelï¿½, ï¿½Angelaï¿½, ï¿½angela.merkel@germany.deï¿½) " ;
+      String sql = "INSERT INTO type_cours (ID,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Type_cours obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM type_cours  WHERE Nom='"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+//ON UPDATE interactif PAR CI Interactif
+public boolean update(Type_cours obj, Connection conn) throws SQLException {
+//	  String sql = "UPDATE type_cours SET Nom ='CI Cours Interactif' WHERE"+ obj.getNom() +"'";
+	String sql = "UPDATE type_cours SET Nom ='CI Cours Interactif' WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
 
   @Override
   public boolean create(Type_cours obj) {

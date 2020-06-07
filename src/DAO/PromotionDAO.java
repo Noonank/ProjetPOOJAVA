@@ -22,6 +22,28 @@ public class PromotionDAO extends DAO<Promotion> {
     super(conn);
   }
 
+    public boolean create(Promotion obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(‘Merkel’, ‘Angela’, ‘angela.merkel@germany.de’) " ;
+      String sql = "INSERT INTO promotion (ID,Nom)VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Promotion obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM promotion  WHERE Nom='"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+
+public boolean update(Promotion obj, Connection conn) throws SQLException {
+	//String sql = "UPDATE promotion SET Nom ='2023’ WHERE"+ obj.getNom() +"'";
+	String sql = "UPDATE promotion SET Nom ='2023’ WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
   public boolean create(Promotion obj) {
     return false;
   }

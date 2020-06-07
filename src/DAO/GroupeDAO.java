@@ -22,6 +22,28 @@ public class GroupeDAO extends DAO<Groupe> {
     super(conn);
   }
 
+  
+    public boolean create(Groupe obj, Connection conn) throws SQLException {
+	  String sql = "INSERT INTO groupe(ID,Nom,ID_promotion) VALUES ('" + obj.getId()+"','"+ obj.getNom()+"','"+ obj.getIdPromo();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Groupe obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM groupe WHERE Nom='"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+
+//ON AFFECTE LA PROMO 2023 AUX ELEVES DU TD
+public boolean update(Groupe obj, Connection conn) throws SQLException {
+//  String sql = "UPDATE groupe SET ID_promotion ='2023' WHERE"+ obj.getNom() +"'";
+	String sql = "UPDATE groupe SET ID_promotion ='2023' WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
   public boolean create(Groupe obj) {
     return false;
   }

@@ -21,6 +21,28 @@ public class SiteDAO extends DAO<Site> {
   public SiteDAO(Connection conn) {
     super(conn);
   }
+  public boolean create(Site obj, Connection conn) throws SQLException {
+      String sql = "INSERT INTO site(ID_site,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
+public boolean delete(Site obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM site WHERE Nom='"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+
+//on associe le nouveau nom E2 quand le nom est 
+public boolean update(Site obj, Connection conn) throws SQLException {
+//  String sql = "UPDATE site SET Nom ='E2' WHERE"+ obj.getNom() +"'";
+	String sql = "UPDATE site SET Nom ='E2' WHERE"+ obj.getNom();
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
+
 
   @Override
   public boolean create(Site obj) {

@@ -816,7 +816,11 @@ public class EDT extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        // ouvrire fenete de edt de salle 
+        Salles sl = new Salles();
+        sl.setVisible(true);
+        sl.pack();
+        sl.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
