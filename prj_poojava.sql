@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 07 Juin 2020 à 14:37
+-- Généré le :  Dim 07 Juin 2020 à 23:45
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -67,7 +67,8 @@ INSERT INTO `enseignant` (`ID_utilisateur`, `ID_cours`) VALUES
 (16, 5),
 (16, 6),
 (17, 2),
-(17, 4);
+(17, 4),
+(18, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `seance` (
   PRIMARY KEY (`ID`),
   KEY `ID_type` (`ID_type`),
   KEY `ID_cours` (`ID_cours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Contenu de la table `seance`
@@ -206,7 +207,11 @@ INSERT INTO `seance` (`ID`, `Semaine`, `Date`, `Heure_debut`, `Heure_fin`, `Etat
 (5, 24, '2020-06-08', '15:30:00', '17:00:00', 1, 2, 3),
 (6, 24, '2020-06-08', '17:15:00', '18:45:00', 1, 2, 3),
 (7, 24, '2020-06-11', '08:30:00', '10:00:00', 1, 2, 2),
-(8, 24, '2020-06-11', '10:15:00', '11:45:00', 1, 2, 2);
+(8, 24, '2020-06-11', '10:15:00', '11:45:00', 1, 2, 2),
+(9, 24, '2020-06-11', '08:30:00', '10:00:00', 1, 1, 2),
+(10, 24, '2020-06-11', '10:15:00', '11:45:00', 1, 1, 2),
+(13, 24, '2020-06-11', '12:00:00', '13:30:00', 1, 6, 4),
+(100, 100, '2020-06-19', '19:00:00', '20:30:00', 1, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -341,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Prenom` varchar(255) NOT NULL,
   `Droit` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `utilisateur`
@@ -364,7 +369,8 @@ INSERT INTO `utilisateur` (`ID`, `Email`, `Password`, `Nom`, `Prenom`, `Droit`) 
 (14, 'tom.sella@edu.ece.fr', 'tom', 'Sella', 'Tom', 4),
 (15, 'anne-charlotte.vignon@edu.ece.fr', 'annec', 'Vignon', 'Anne-Charlotte', 4),
 (16, 'ldelisle@inseec-edu.com', 'ld', 'Delisle', 'Laurent', 3),
-(17, 'manolo-dulva.hina@ece.fr', 'manolo', 'Hina', 'Manolo-Dulva', 3);
+(17, 'manolo-dulva.hina@ece.fr', 'manolo', 'Hina', 'Manolo-Dulva', 3),
+(18, 'arash.mokhber@edu.ece.fr', 'mok', 'Mokhber', 'Arash', 3);
 
 --
 -- Contraintes pour les tables exportées
