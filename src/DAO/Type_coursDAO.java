@@ -105,4 +105,19 @@ public boolean update(Type_cours obj, Connection conn) throws SQLException {
     return tpc;
     }
 
+    @Override
+    public boolean create(Type_cours obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Type_cours obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Type_cours obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

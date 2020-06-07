@@ -110,6 +110,21 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
     return etudiant;
   }
+
+    @Override
+    public boolean create(Etudiant obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Etudiant obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Etudiant obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public static class find extends Etudiant {
 
         public Etudiant find(int id, Connection conn) {
