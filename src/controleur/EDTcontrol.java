@@ -67,10 +67,6 @@ public class EDTcontrol {
         int etud_id_grp = etud.getid_grp();
         System.out.println("###---------####"+etud_id_grp);
         
-        
-        //int len = Seance_groupeDAO.SizeTabsta(conne);
-        //System.out.println("tien la taille du truc wsh "+len);
-        //for(int i = 1; i < len+1; i++)
         ResultSet rs = conne.createStatement().executeQuery("SELECT * FROM seance_groupes WHERE ID_groupe = "+etud_id_grp);
 
         while(rs.next()){
@@ -78,6 +74,41 @@ public class EDTcontrol {
     
         //Seance_groupe seance_grp = Seance_groupeDAO.findgrp(etud_id_grp,conne);
         int util_seance = seance_grp.getIdSeance();
+        System.out.println("###----seancetamer----####"+util_seance);
+        Seance ensemblecours = SeanceDAO.find(util_seance,conne);
+        System.out.println("inshalla ca marche"+ensemblecours.getHeureDebut());
+                System.out.println("inshalla ca date      "+ensemblecours.getSemaine()+"    ptn de merdere "
+                        + "marche"+ensemblecours.getDate()+"--------"+ensemblecours.getEtat()+"("
+                +"--------"+ensemblecours.getIdCours()+")"); 
+        int idcour = ensemblecours.getIdCours();
+        
+        System.out.println("###---- idenitificant du cours ----####"+idcour);
+        Cours cours = CoursDAO.find(idcour,conne);
+        Utilisateur prof =  recupdataProf(ensemblecours,conne);
+        System.out.println("###--[[[[[[[[[[[-- cours ----####"+prof.getNom());
+        Groupe grp = recupdatagroupe(ensemblecours,conne);
+        
+        System.out.println("###---- groupe sa mer ----####"+grp.getNom());
+        rangement(conne,ensemblecours,edtmain,cours,prof,grp);
+        }
+        
+    }
+    public static void remplissageEDTProf(Utilisateur util, Connection conne, EDT edtmain) throws ParseException, SQLException {
+        System.out.println("nous avons repurer les données suivante:"+util.getEmail()+";"+util.getNom());
+        int id_util = util.getId();
+        System.out.println("#######"+id_util);
+        Enseignant pro = EnseignantDAO.find( id_util,conne);
+        //int etud_id_grp = etud.getid_grp();
+        //System.out.println("###---------####"+etud_id_grp);
+        ResultSet rs = conne.createStatement().executeQuery("SELECT * FROM seance_enseignant WHERE ID_enseignant = "+id_util);
+
+        //ResultSet rs = conne.createStatement().executeQuery("SELECT * FROM seance_groupes WHERE ID_groupe = "+etud_id_grp);
+
+        while(rs.next()){
+        Seance_enseignant seance_pro = new Seance_enseignant(rs.getInt("ID_seance"),id_util);       
+    
+        //Seance_groupe seance_grp = Seance_groupeDAO.findgrp(etud_id_grp,conne);
+        int util_seance = seance_pro.getIdSeance();
         System.out.println("###----seancetamer----####"+util_seance);
         Seance ensemblecours = SeanceDAO.find(util_seance,conne);
         System.out.println("inshalla ca marche"+ensemblecours.getHeureDebut());

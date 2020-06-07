@@ -187,12 +187,13 @@ public class Login extends JFrame implements ActionListener {
 	//chart2.pack();
 	//chart2.setVisible(true);
         }else if(util.getDroit()==3){
-            message.setText(" Hello prof");
-                this.setVisible(false);
-                EDT chartprof = new EDT();
-//Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
-	//chart2.pack();
-	//chart2.setVisible(true);
+            this.setVisible(false);
+                EDT edtpro = new EDT(util,conne);
+                EDT.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                EDTcontrol.remplissageEDTProf(util,conne,edtpro);
+                edtpro.setVisible(true);
+                System.out.println("Utilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+
         }else if (util.getDroit()==4){
             message.setText(" Hello eleve "+util.getPrenom());
                 this.setVisible(false);
