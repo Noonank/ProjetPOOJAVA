@@ -12,9 +12,9 @@ package modele;
 public class Etudiant {
   //ID
   private int id_util = 0;
-  //Nom de l'élève
+  //numero de l eleve
   private String numero = "";
-  //Prénom de l'élève
+  //groupe de l eleve
   private int id_grp = 0;
    
   public Etudiant(int id, String num, int id_grp) {

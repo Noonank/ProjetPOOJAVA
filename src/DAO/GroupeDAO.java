@@ -12,27 +12,37 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Groupe;
+import modele.Utilisateur;
 
 /**
  *
  * @author noork
  */
 public class GroupeDAO extends DAO<Groupe> {
-  public GroupeDAO(Connection conn) {
-    super(conn);
-  }
+	  public GroupeDAO(Connection conn) throws SQLException {
+	    super(conn);
+	  }
 
-  public boolean create(Groupe obj) {
-    return false;
-  }
+  public boolean create(Groupe obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(�Merkel�, �Angela�, �angela.merkel@germany.de�) " ;
+      String sql = "INSERT INTO groupe(ID,Nom,ID_promotion) VALUES ('" + obj.getId()+"','"+ obj.getNom()+"','"+ obj.getIdPromo();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
-  public boolean delete(Groupe obj) {
-    return false;
-  }
-   
-  public boolean update(Groupe obj) {
-    return false;
-  }
+public boolean delete(Groupe obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM groupe WHERE Nom=�"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+
+//ON AFFECTE LA PROMO 2023 AUX ELEVES DU TD06
+public boolean update(Groupe obj, Connection conn) throws SQLException {
+  String sql = "UPDATE groupe SET ID_promotion ='2023� WHERE"+ obj.getNom() +"=TD06";
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
      /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -73,29 +83,12 @@ public class GroupeDAO extends DAO<Groupe> {
 
       if(result.first()){
         groupe = new Groupe(id, result.getString("Nom"),
-        result.getInt("ID_Promotion"));
-
-        /*EnseignantDAO profDao = new EnseignantDAO(this.connect);
-
-        while(result.next())             
-          groupe.addEnseignant(profDao.find(result.getInt("prof_id")));
-
-        EtudiantDAO etudiantDao = new EtudiantDAO(this.connect);
-        result = this.connect.createStatement().executeQuery(
-          "SELECT elv_id, elv_nom, elv_prenom FROM etudiant " +
-          "INNER JOIN groupe ON elv_cls_k = cls_id AND cls_id = " + id
-        );
-
-        while(result.next())
-          groupe.addEtudiant(etudiantDao.find(result.getInt("etd_id")));
-     */ }
+        result.getInt("ID_Promotion")); }
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return groupe;
   }
-
-
 
 
 
@@ -131,4 +124,5 @@ public class GroupeDAO extends DAO<Groupe> {
     return groupe;
   }
 }
+
 

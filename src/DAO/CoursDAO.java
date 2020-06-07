@@ -12,30 +12,37 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Cours;
+import modele.Utilisateur;
 
 /**
  *
  * @author noork
  */
 public class CoursDAO extends DAO<Cours> {
-  public CoursDAO(Connection conn) {
+  public CoursDAO(Connection conn) throws SQLException {
     super(conn);
   }
 
-  @Override
-  public boolean create(Cours obj) {
-    return false;
-  }
+  public boolean create(Cours obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(�Merkel�, �Angela�, �angela.merkel@germany.de�) " ;
+      String sql = "INSERT INTO cours(ID,Nom) VALUES ('" + obj.getId()+"','"+ obj.getNom();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
-  @Override
-  public boolean delete(Cours obj) {
-    return false;
-  }
+public boolean delete(Cours obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM cours WHERE Nom=�"+ obj.getNom() +"'";
+  conn.createStatement().executeUpdate(sql) ;
 
-  @Override
-  public boolean update(Cours obj) {
-    return false;
-  }
+  return false;
+}
+ 
+//ON ASSOCIE LE NOM DE DROIT DU TRAVAIL QUAND ID=3
+public boolean update(Cours obj, Connection conn) throws SQLException {
+  String sql = "UPDATE cours SET Nom ='Droit du travail� WHERE"+ obj.getId() +"=3";
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
   
        /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java

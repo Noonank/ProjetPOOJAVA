@@ -12,27 +12,38 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Salle;
+import modele.Utilisateur;
 
 /**
  *
  * @author noork
  */
 public class SalleDAO extends DAO<Salle> {
-  public SalleDAO(Connection conn) {
+  public SalleDAO(Connection conn) throws SQLException  {
     super(conn);
   }
 
-  public boolean create(Salle obj) {
-    return false;
-  }
+  public boolean create(Salle obj, Connection conn) throws SQLException {
+      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(�Merkel�, �Angela�, �angela.merkel@germany.de�) " ;
+      String sql = "INSERT INTO salle(ID,Nom,Capacite,ID_site) VALUES ('" + obj.getId()+"','"+ obj.getNom()+"','"+ obj.getCapacite()+"','"+ obj.getIdSite();
+       conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
-  public boolean delete(Salle obj) {
-    return false;
-  }
-   
-  public boolean update(Salle obj) {
-    return false;
-  }
+public boolean delete(Salle obj, Connection conn) throws SQLException {
+  String sql = " DELETE FROM salle WHERE ID_site=�"+ obj.getIdSite() +"'";
+  conn.createStatement().executeUpdate(sql) ;
+
+  return false;
+}
+ 
+
+//LA SALLE EST ASSOCIEE AU SITE 1 QUAND ELLE APPARTIENT A EM
+public boolean update(Salle obj, Connection conn) throws SQLException {
+  String sql = "UPDATE salle SET ID_site ='1� WHERE"+ obj.getNom() +"=EM009";
+  conn.createStatement().executeUpdate(sql) ;
+  return false;
+}
 
      /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -75,22 +86,7 @@ public class SalleDAO extends DAO<Salle> {
         salle = new Salle(id, 
                 result.getString("Nom"),
                 result.getInt("Capacite"),
-                result.getInt("ID_site"));
-
-        /*EnseignantDAO profDao = new EnseignantDAO(this.connect);
-
-        while(result.next())             
-          salle.addEnseignant(profDao.find(result.getInt("prof_id")));
-
-        EtudiantDAO etudiantDao = new EtudiantDAO(this.connect);
-        result = this.connect.createStatement().executeQuery(
-          "SELECT elv_id, elv_nom, elv_prenom FROM etudiant " +
-          "INNER JOIN salle ON elv_cls_k = cls_id AND cls_id = " + id
-        );
-
-        while(result.next())
-          salle.addEtudiant(etudiantDao.find(result.getInt("etd_id")));
-     */ }
+                result.getInt("ID_site"));}
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -116,5 +112,7 @@ public class SalleDAO extends DAO<Salle> {
       e.printStackTrace();
     }
     return salle;
+
   }
 }
+
