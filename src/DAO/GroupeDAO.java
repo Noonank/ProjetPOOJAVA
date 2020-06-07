@@ -94,4 +94,41 @@ public class GroupeDAO extends DAO<Groupe> {
     }
     return groupe;
   }
+
+
+
+
+
+  public static Groupe find(int id, Connection conne) {
+    Groupe groupe = new Groupe();            
+    try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+      ResultSet result = st.executeQuery("SELECT * FROM groupe WHERE ID = " + id); 
+
+      if(result.first()){
+        groupe = new Groupe(id, result.getString("Nom"),
+        result.getInt("ID_Promotion"));
+
+        /*EnseignantDAO profDao = new EnseignantDAO(this.connect);
+
+        while(result.next())             
+          groupe.addEnseignant(profDao.find(result.getInt("prof_id")));
+
+        EtudiantDAO etudiantDao = new EtudiantDAO(this.connect);
+        result = this.connect.createStatement().executeQuery(
+          "SELECT elv_id, elv_nom, elv_prenom FROM etudiant " +
+          "INNER JOIN groupe ON elv_cls_k = cls_id AND cls_id = " + id
+        );
+
+        while(result.next())
+          groupe.addEtudiant(etudiantDao.find(result.getInt("etd_id")));
+     */ }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return groupe;
+  }
 }
+

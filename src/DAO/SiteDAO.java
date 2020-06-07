@@ -82,4 +82,20 @@ public class SiteDAO extends DAO<Site> {
     }
     return site;
   }
+  
+  public static Site find(int id, Connection conne) {
+    Site site = new Site();  
+
+    try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+     ResultSet result = st.executeQuery("SELECT * FROM site WHERE ID_site = " + id);
+        if(result.first())
+          site = new Site(id, result.getString("Nom"));         
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return site;
+  }
 }

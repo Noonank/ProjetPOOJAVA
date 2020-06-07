@@ -82,4 +82,19 @@ public class CoursDAO extends DAO<Cours> {
     }
     return cours;
   }
+  
+    public static Cours find(int id, Connection conne) {
+Cours cours = new Cours();  
+
+    try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+     ResultSet result = st.executeQuery("SELECT * FROM cours WHERE ID = " + id);
+        if(result.first())
+          cours = new Cours(id, result.getString("Nom"));         
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return cours;    }
 }

@@ -11,26 +11,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modele.Salle;
+import modele.Seance_salle;
 
 /**
  *
  * @author noork
  */
-public class SalleDAO extends DAO<Salle> {
-  public SalleDAO(Connection conn) {
+public class Seance_salleDAO extends DAO<Seance_salle> {
+  public Seance_salleDAO(Connection conn) {
     super(conn);
   }
 
-  public boolean create(Salle obj) {
+  public boolean create(Seance_salle obj) {
     return false;
   }
 
-  public boolean delete(Salle obj) {
+  public boolean delete(Seance_salle obj) {
     return false;
   }
    
-  public boolean update(Salle obj) {
+  public boolean update(Seance_salle obj) {
     return false;
   }
 
@@ -44,7 +44,7 @@ public class SalleDAO extends DAO<Salle> {
   public int SizeTab(Connection conn){
       ResultSet rs;
       try {
-          rs = stDAO(conn).executeQuery("select * from salle");
+          rs = stDAO(conn).executeQuery("select * from seance_salleDAO");
            int size = 0;
             try {
                 rs.last();
@@ -63,58 +63,54 @@ public class SalleDAO extends DAO<Salle> {
   }
    
   
-  public Salle find(int id) {
-    Salle salle = new Salle();            
+  public Seance_salle find(int id) {
+    Seance_salle seance_salleDAO = new Seance_salle();            
     try {
         Statement st = this.connect.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE, 
         ResultSet.CONCUR_READ_ONLY);
-      ResultSet result = st.executeQuery("SELECT * FROM salle WHERE ID = " + id); 
+      ResultSet result = st.executeQuery("SELECT * FROM seance_salleDAO WHERE ID_seance = " + id); 
 
       if(result.first()){
-        salle = new Salle(id, 
-                result.getString("Nom"),
-                result.getInt("Capacite"),
-                result.getInt("ID_site"));
+        seance_salleDAO = new Seance_salle(id, 
+                result.getInt("ID_salle"));
 
         /*EnseignantDAO profDao = new EnseignantDAO(this.connect);
 
         while(result.next())             
-          salle.addEnseignant(profDao.find(result.getInt("prof_id")));
+          seance_salleDAO.addEnseignant(profDao.find(result.getInt("prof_id")));
 
         EtudiantDAO etudiantDao = new EtudiantDAO(this.connect);
         result = this.connect.createStatement().executeQuery(
           "SELECT elv_id, elv_nom, elv_prenom FROM etudiant " +
-          "INNER JOIN salle ON elv_cls_k = cls_id AND cls_id = " + id
+          "INNER JOIN seance_salleDAO ON elv_cls_k = cls_id AND cls_id = " + id
         );
 
         while(result.next())
-          salle.addEtudiant(etudiantDao.find(result.getInt("etd_id")));
+          seance_salleDAO.addEtudiant(etudiantDao.find(result.getInt("etd_id")));
      */ }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return salle;
+    return seance_salleDAO;
   }
   
-    public static Salle find(int id, Connection conne) {
-    Salle salle = new Salle();            
+    public static Seance_salle find(int id, Connection conne) {
+    Seance_salle seance_salleDAO = new Seance_salle();            
     try {
         Statement st = conne.createStatement(
         ResultSet.TYPE_SCROLL_INSENSITIVE, 
         ResultSet.CONCUR_READ_ONLY);
-      ResultSet result = st.executeQuery("SELECT * FROM salle WHERE ID = " + id); 
+      ResultSet result = st.executeQuery("SELECT * FROM seance_salle WHERE ID_seance = " + id); 
 
       if(result.first()){
-        salle = new Salle(id, 
-                result.getString("Nom"),
-                result.getInt("Capacite"),
-                result.getInt("ID_site"));
+        seance_salleDAO = new Seance_salle(id, 
+                result.getInt("ID_salle"));
 
         }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return salle;
+    return seance_salleDAO;
   }
 }

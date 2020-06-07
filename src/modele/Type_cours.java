@@ -5,11 +5,15 @@
  */
 package modele;
 
+import java.sql.Connection;
+
 /**
  *
  * @author noork
  */
 public class Type_cours {
+
+
   //ID
   private int id = 0;
   //Nom du professeur

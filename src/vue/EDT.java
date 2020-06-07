@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package vue;
+import controleur.EDTcontrol;
+import java.sql.Connection;
+import modele.Utilisateur;
 
 /**
  *
@@ -15,6 +18,16 @@ public class EDT extends javax.swing.JFrame {
      * Creates new form EDT
      */
     public EDT() {
+        initComponents();
+        //remplissageEDT();
+    }
+
+    EDT(Utilisateur util) {
+        initComponents();
+        //EDTcontrol.remplissageEDT(util);
+    }
+
+    EDT(Utilisateur util, Connection conne) {
         initComponents();
     }
 
@@ -878,55 +891,55 @@ public class EDT extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1A;
-    private javax.swing.JButton jButton1B;
-    private javax.swing.JButton jButton1C;
-    private javax.swing.JButton jButton1D;
-    private javax.swing.JButton jButton1E;
-    private javax.swing.JButton jButton1F;
-    private javax.swing.JButton jButton1G;
-    private javax.swing.JButton jButton2A;
-    private javax.swing.JButton jButton2B;
-    private javax.swing.JButton jButton2C;
-    private javax.swing.JButton jButton2D;
-    private javax.swing.JButton jButton2E;
-    private javax.swing.JButton jButton2F;
-    private javax.swing.JButton jButton2G;
-    private javax.swing.JButton jButton3A;
-    private javax.swing.JButton jButton3B;
-    private javax.swing.JButton jButton3C;
-    private javax.swing.JButton jButton3D;
-    private javax.swing.JButton jButton3E;
-    private javax.swing.JButton jButton3F;
-    private javax.swing.JButton jButton3G;
-    private javax.swing.JButton jButton4A;
-    private javax.swing.JButton jButton4B;
-    private javax.swing.JButton jButton4C;
-    private javax.swing.JButton jButton4D;
-    private javax.swing.JButton jButton4E;
-    private javax.swing.JButton jButton4F;
-    private javax.swing.JButton jButton4G;
-    private javax.swing.JButton jButton5A;
-    private javax.swing.JButton jButton5B;
-    private javax.swing.JButton jButton5C;
-    private javax.swing.JButton jButton5D;
-    private javax.swing.JButton jButton5E;
-    private javax.swing.JButton jButton5F;
-    private javax.swing.JButton jButton5G;
-    private javax.swing.JButton jButton6A;
-    private javax.swing.JButton jButton6B;
-    private javax.swing.JButton jButton6C;
-    private javax.swing.JButton jButton6D;
-    private javax.swing.JButton jButton6E;
-    private javax.swing.JButton jButton6F;
-    private javax.swing.JButton jButton6G;
-    private javax.swing.JButton jButton7A;
-    private javax.swing.JButton jButton7B;
-    private javax.swing.JButton jButton7C;
-    private javax.swing.JButton jButton7D;
-    private javax.swing.JButton jButton7E;
-    private javax.swing.JButton jButton7F;
-    private javax.swing.JButton jButton7G;
+    public static javax.swing.JButton jButton1A;
+    public static javax.swing.JButton jButton1B;
+    public static javax.swing.JButton jButton1C;
+    public static javax.swing.JButton jButton1D;
+    public static javax.swing.JButton jButton1E;
+    public static javax.swing.JButton jButton1F;
+    public static javax.swing.JButton jButton1G;
+    public static javax.swing.JButton jButton2A;
+    public static javax.swing.JButton jButton2B;
+    public static javax.swing.JButton jButton2C;
+    public static javax.swing.JButton jButton2D;
+    public static javax.swing.JButton jButton2E;
+    public static javax.swing.JButton jButton2F;
+    public static javax.swing.JButton jButton2G;
+    public static javax.swing.JButton jButton3A;
+    public static javax.swing.JButton jButton3B;
+    public static javax.swing.JButton jButton3C;
+    public static javax.swing.JButton jButton3D;
+    public static javax.swing.JButton jButton3E;
+    public static javax.swing.JButton jButton3F;
+    public static javax.swing.JButton jButton3G;
+    public static javax.swing.JButton jButton4A;
+    public static javax.swing.JButton jButton4B;
+    public static javax.swing.JButton jButton4C;
+    public static javax.swing.JButton jButton4D;
+    public static javax.swing.JButton jButton4E;
+    public static javax.swing.JButton jButton4F;
+    public static javax.swing.JButton jButton4G;
+    public static javax.swing.JButton jButton5A;
+    public static javax.swing.JButton jButton5B;
+    public static javax.swing.JButton jButton5C;
+    public static javax.swing.JButton jButton5D;
+    public static javax.swing.JButton jButton5E;
+    public static javax.swing.JButton jButton5F;
+    public static javax.swing.JButton jButton5G;
+    public static javax.swing.JButton jButton6A;
+    public static javax.swing.JButton jButton6B;
+    public static javax.swing.JButton jButton6C;
+    public static javax.swing.JButton jButton6D;
+    public static javax.swing.JButton jButton6E;
+    public static javax.swing.JButton jButton6F;
+    public static javax.swing.JButton jButton6G;
+    public static javax.swing.JButton jButton7A;
+    public static javax.swing.JButton jButton7B;
+    public static javax.swing.JButton jButton7C;
+    public static javax.swing.JButton jButton7D;
+    public static javax.swing.JButton jButton7E;
+    public static javax.swing.JButton jButton7F;
+    public static javax.swing.JButton jButton7G;
     private javax.swing.JLabel jLabel0830;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1000;

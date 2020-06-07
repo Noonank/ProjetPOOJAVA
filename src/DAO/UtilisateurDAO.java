@@ -92,6 +92,28 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     return utilisateur;
   }
   
+  
+  public static Utilisateur find(int id,Connection conne) {
+    Utilisateur utilisateur = new Utilisateur();      
+      
+    try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+        ResultSet result = st.executeQuery("SELECT * FROM utilisateur WHERE ID = " + id);
+      if(result.first()){
+        utilisateur = new Utilisateur(
+          id,
+          result.getString("Email"),
+          result.getString("Password"),
+          result.getString("Nom"),
+          result.getString("Prenom"),
+          result.getInt("Droit")); }        
+    } catch (SQLException e) {
+    }
+    return utilisateur;
+  }
+  
     /**
      *
      * @param email

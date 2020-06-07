@@ -7,6 +7,7 @@ package vue;
 
 import DAO.DAO;
 import DAO.UtilisateurDAO;
+import controleur.EDTcontrol;
 import modele.Utilisateur;
 import modele.SdzConnection;
 
@@ -27,7 +28,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -141,7 +144,7 @@ public class Login extends JFrame implements ActionListener {
         
         panel.setLayout(gl_panel);
         
-        setTitle("Veuillez vous connecter s'il vous pla�t!");
+        setTitle("Veuillez vous connecter s'il vous plait!");
         setSize(600, 300);
         setVisible(true);
 
@@ -158,7 +161,8 @@ public class Login extends JFrame implements ActionListener {
             UtilisateurDao = new UtilisateurDAO(SdzConnection.getInstance());
             String userName = userName_text.getText();
         String password = password_text.getText();
-        int len = UtilisateurDao.SizeTab(SdzConnection.getInstance());
+            Connection conne = SdzConnection.getInstance();
+        int len = UtilisateurDao.SizeTab(conne);
         Utilisateur util = null ;
         while (util==null){
          util = UtilisateurDao.find(userName,password);
@@ -169,7 +173,7 @@ public class Login extends JFrame implements ActionListener {
             case 1:
                 message.setText(" Hello admin");
                 this.setVisible(false);
-        EDT chartadmin = new EDT();
+        EDT chartadmin = new EDT(util,conne);
 	//chart.pack();
 	chartadmin.setVisible(true);
             case 2: 
@@ -188,13 +192,16 @@ public class Login extends JFrame implements ActionListener {
 	//chart2.setVisible(true);
             case 4:
                 message.setText(" Hello eleve "+util.getPrenom());
-                //this.setVisible(false);
-                EDT edtmain = new EDT();
+                this.setVisible(false);
+                EDT edtmain = new EDT(util,conne);
+                edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                EDTcontrol.remplissageEDT1(util,conne,edtmain);
                 edtmain.setVisible(true);
                         System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
 
                 
-                edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                
+
                 //edtmain.pack();
         //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
 	//chart2.pack();
@@ -204,6 +211,8 @@ public class Login extends JFrame implements ActionListener {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
 

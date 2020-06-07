@@ -62,6 +62,21 @@ public class EnseignantDAO extends DAO<Enseignant> {
 
   }
    
+   public static Enseignant find(int id_cours, Connection conne) {
+    Enseignant prof = new Enseignant();  
+        try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+      ResultSet result = st.executeQuery("SELECT * FROM enseignant WHERE ID_cours = " + id_cours);
+      if(result.first())
+        prof = new Enseignant(result.getInt("ID_utilisateur"),id_cours);
+        
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return prof;
+    }
   
   public Enseignant find(int id) {
     Enseignant enseignant = new Enseignant();            

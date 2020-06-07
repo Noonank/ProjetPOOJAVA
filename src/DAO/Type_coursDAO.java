@@ -82,4 +82,20 @@ public class Type_coursDAO extends DAO<Type_cours> {
     }
     return cours;
   }
+  
+    public static Type_cours find(int id, Connection conne) {
+    Type_cours tpc = new Type_cours();
+        try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+     ResultSet result = st.executeQuery("SELECT * FROM type_cours WHERE ID = " + id);
+      if(result.first())
+        tpc = new Type_cours(id, result.getString("Nom"));         
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return tpc;
+    }
+
 }

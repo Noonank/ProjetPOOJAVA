@@ -18,6 +18,24 @@ import modele.Etudiant;
  * @author noork
  */
 public class EtudiantDAO extends DAO<Etudiant> {
+
+    public static Etudiant find(int id, Connection conne) {
+    Etudiant etudiant = new Etudiant();  
+        try {
+        Statement st = conne.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+        ResultSet result = st.executeQuery("SELECT * FROM etudiant WHERE ID_utilisateur = " + id);
+      if(result.first())
+        etudiant = new Etudiant(
+          id,
+          result.getString("Numero"),
+          result.getInt("ID_groupe"));         
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return etudiant;
+    }
   public EtudiantDAO(Connection conn) {
     super(conn);
   }
@@ -85,4 +103,27 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
     return etudiant;
   }
-}
+
+    public static class find extends Etudiant {
+
+        public Etudiant find(int id, Connection conn) {
+    Etudiant etudiant = new Etudiant();      
+      
+    try {
+        Statement st = conn.createStatement(
+        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+        ResultSet.CONCUR_READ_ONLY);
+        ResultSet result = st.executeQuery("SELECT * FROM etudiant WHERE ID_utilisateur = " + id);
+      if(result.first())
+        etudiant = new Etudiant(
+          id,
+          result.getString("Numero"),
+          result.getInt("ID_groupe"));         
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return etudiant;
+  }
+        }
+    }
+  
