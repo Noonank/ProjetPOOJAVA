@@ -7,6 +7,7 @@ package vue;
 
 import DAO.DAO;
 import DAO.UtilisateurDAO;
+import controleur.EDTadminControl;
 import controleur.EDTcontrol;
 import modele.Utilisateur;
 import modele.SdzConnection;
@@ -139,7 +140,7 @@ public class Login extends JFrame implements ActionListener {
         );
         
         
-        submit.addActionListener(this);
+        //submit.addActionListener(this);
         //add(panel, BorderLayout.CENTER);
         
         panel.setLayout(gl_panel);
@@ -169,13 +170,53 @@ public class Login extends JFrame implements ActionListener {
         }       
         System.out.println("Utilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
         
+        if (util.getDroit()==1){
+            message.setText(" Hello Admin "+util.getPrenom());
+                this.setVisible(false);
+                EDTadmin edtadmin = new EDTadmin(util,conne);
+                edtadmin.wlcm.setText("Welcome<Admin>");
+                EDTadminControl.remplissageEDT1(util,conne,edtadmin);
+                edtadmin.setVisible(true);
+                System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+
+        }else if(util.getDroit()==2){
+            message.setText(" Hello responsable");
+                this.setVisible(false);
+                EDT chartrespo = new EDT();
+        //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+	//chart2.pack();
+	//chart2.setVisible(true);
+        }else if(util.getDroit()==3){
+            message.setText(" Hello prof");
+                this.setVisible(false);
+                EDT chartprof = new EDT();
+//Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
+	//chart2.pack();
+	//chart2.setVisible(true);
+        }else if (util.getDroit()==4){
+            message.setText(" Hello eleve "+util.getPrenom());
+                this.setVisible(false);
+                //EDT edtmain = new EDT(util,conne);
+                //edtmain.wlcm.setText("Welcome<"+util.getPrenom()+">");
+                //EDTcontrol.remplissageEDT1(util,conne,edtmain);
+                //edtmain.setVisible(true);
+                        System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+
+        }
+        /*
         switch (util.getDroit()){
             case 1:
-                message.setText(" Hello admin");
+                message.setText(" Hello Admin "+util.getPrenom());
                 this.setVisible(false);
-        EDT chartadmin = new EDT(util,conne);
+                EDTadmin edtadmin = new EDTadmin(util,conne);
+                edtadmin.wlcm.setText("Welcome<Admin>");
+                EDTadminControl.remplissageEDT1(util,conne,edtadmin);
+                edtadmin.setVisible(true);
+                        System.out.println("OUIIIIIIIIIIIIIIIIIIIUtilisateur N°" + util.getId() + "  - " + util.getNom()+ "  - " + util.getPrenom()+ "  - " + util.getDroit());
+
+                
 	//chart.pack();
-	chartadmin.setVisible(true);
+	//chartadmin.setVisible(true);
             case 2: 
                 message.setText(" Hello responsable");
                 this.setVisible(false);
@@ -206,7 +247,7 @@ public class Login extends JFrame implements ActionListener {
         //Graphique chart2 = new Graphique("Emploi du temps ECE Paris 2019/2020","Emploi du temps ECE Paris 2019/2020");
 	//chart2.pack();
 	//chart2.setVisible(true);
-        }
+        }*/
         
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

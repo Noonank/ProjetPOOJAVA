@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.Etudiant;
-import modele.Utilisateur;
 
 /**
  *
@@ -40,26 +39,21 @@ public class EtudiantDAO extends DAO<Etudiant> {
   public EtudiantDAO(Connection conn) {
     super(conn);
   }
-  
-  public boolean create(Etudiant obj, Connection conn) throws SQLException {
-      //String sql = " INSERT INTO students(Nom, Prenom,Email) VALUES(�Merkel�, �Angela�, �angela.merkel@germany.de�) " ;
-      String sql = "INSERT INTO etudiant(ID_utilisateur,Numero,ID_groupe) VALUES ('" + obj.getId()+"','"+ obj.getNum()+"','"+ obj.getid_grp();
-       conn.createStatement().executeUpdate(sql) ;
-  return false;
+
+  @Override
+  public boolean create(Etudiant obj) {
+    return false;
   }
-  
-  public boolean delete(Etudiant obj, Connection conn) throws SQLException {
-	    String sql = "DELETE FROM etudiant WHERE Numero=�"+ obj.getNum() +"'";
-	    conn.createStatement().executeUpdate(sql) ;
-	    return false;
-	  	}
-  
-  public boolean update(Etudiant obj, Connection conn) throws SQLException {
-	  //tous les �tudiants sont attribu�s au groupe 1
-	    String sql = "UPDATE etudiant SET ID_groupe ='1� WHERE"+ obj.getid_grp() +"=2";
-	    conn.createStatement().executeUpdate(sql) ;
-	    return false;
-  		}
+
+  @Override
+  public boolean delete(Etudiant obj) {
+    return false;
+  }
+   
+  @Override
+  public boolean update(Etudiant obj) {
+    return false;
+  }
   
        /**
      *https://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -67,8 +61,6 @@ public class EtudiantDAO extends DAO<Etudiant> {
      * @return
      * @throws SQLException
      */
-  
-  
     @Override
   public int SizeTab(Connection conn){
       ResultSet rs;
@@ -88,6 +80,7 @@ public class EtudiantDAO extends DAO<Etudiant> {
           Logger.getLogger(UtilisateurDAO.class.getName()).log(Level.SEVERE, null, ex);
       }
       return 0;
+
   }
    
    
@@ -100,31 +93,17 @@ public class EtudiantDAO extends DAO<Etudiant> {
         ResultSet.TYPE_SCROLL_INSENSITIVE, 
         ResultSet.CONCUR_READ_ONLY);
         ResultSet result = st.executeQuery("SELECT * FROM etudiant WHERE ID_utilisateur = " + id);
-      if(result.first()) {
+      if(result.first())
         etudiant = new Etudiant(
           id,
           result.getString("Numero"),
-          result.getInt("ID_groupe")); }     
+          result.getInt("ID_groupe"));         
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return etudiant;
   }
 
-    @Override
-    public boolean create(Etudiant obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean delete(Etudiant obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(Etudiant obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     public static class find extends Etudiant {
 
         public Etudiant find(int id, Connection conn) {
@@ -147,4 +126,4 @@ public class EtudiantDAO extends DAO<Etudiant> {
   }
         }
     }
- 
+  
