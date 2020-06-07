@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 06 Juin 2020 à 18:11
+-- Généré le :  Dim 07 Juin 2020 à 14:37
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `salle` (
   `ID_site` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID_site` (`ID_site`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `salle`
@@ -174,7 +174,8 @@ INSERT INTO `salle` (`ID`, `Nom`, `Capacite`, `ID_site`) VALUES
 (4, 'P406', 40, 2),
 (5, 'G002', 80, 3),
 (6, 'G012', 40, 3),
-(7, 'EM011', 45, 1);
+(7, 'EM011', 45, 1),
+(14, 'P305', 45, 2);
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,7 @@ INSERT INTO `salle` (`ID`, `Nom`, `Capacite`, `ID_site`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `seance` (
-  `ID_seance` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Semaine` int(11) NOT NULL,
   `Date` date NOT NULL,
   `Heure_debut` time NOT NULL,
@@ -191,17 +192,21 @@ CREATE TABLE IF NOT EXISTS `seance` (
   `Etat` int(11) NOT NULL,
   `ID_cours` int(11) NOT NULL,
   `ID_type` int(11) NOT NULL,
-  PRIMARY KEY (`ID_seance`),
+  PRIMARY KEY (`ID`),
   KEY `ID_type` (`ID_type`),
   KEY `ID_cours` (`ID_cours`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `seance`
 --
 
-INSERT INTO `seance` (`ID_seance`, `Semaine`, `Date`, `Heure_debut`, `Heure_fin`, `Etat`, `ID_cours`, `ID_type`) VALUES
-(1, 24, '2020-06-08', '12:00:00', '13:30:00', 1, 5, 4);
+INSERT INTO `seance` (`ID`, `Semaine`, `Date`, `Heure_debut`, `Heure_fin`, `Etat`, `ID_cours`, `ID_type`) VALUES
+(1, 24, '2020-06-08', '12:00:00', '13:30:00', 1, 5, 4),
+(5, 24, '2020-06-08', '15:30:00', '17:00:00', 1, 2, 3),
+(6, 24, '2020-06-08', '17:15:00', '18:45:00', 1, 2, 3),
+(7, 24, '2020-06-11', '08:30:00', '10:00:00', 1, 2, 2),
+(8, 24, '2020-06-11', '10:15:00', '11:45:00', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +226,11 @@ CREATE TABLE IF NOT EXISTS `seance_enseignant` (
 --
 
 INSERT INTO `seance_enseignant` (`ID_seance`, `ID_enseignant`) VALUES
-(1, 16);
+(1, 16),
+(5, 17),
+(6, 17),
+(7, 2),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -241,7 +250,13 @@ CREATE TABLE IF NOT EXISTS `seance_groupes` (
 --
 
 INSERT INTO `seance_groupes` (`ID_seance`, `ID_groupe`) VALUES
-(1, 1);
+(1, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(7, 2),
+(8, 1),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -261,7 +276,11 @@ CREATE TABLE IF NOT EXISTS `seance_salle` (
 --
 
 INSERT INTO `seance_salle` (`ID_seance`, `ID_salle`) VALUES
-(1, 7);
+(1, 7),
+(5, 14),
+(6, 14),
+(7, 1),
+(8, 1);
 
 -- --------------------------------------------------------
 
@@ -375,21 +394,21 @@ ALTER TABLE `groupe`
 --
 ALTER TABLE `seance_enseignant`
   ADD CONSTRAINT `ID_seance_enseignant_enseignant` FOREIGN KEY (`ID_enseignant`) REFERENCES `enseignant` (`ID_utilisateur`),
-  ADD CONSTRAINT `ID_seance_enseignant_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID_seance`);
+  ADD CONSTRAINT `ID_seance_enseignant_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID`);
 
 --
 -- Contraintes pour la table `seance_groupes`
 --
 ALTER TABLE `seance_groupes`
   ADD CONSTRAINT `ID_seance_groupe_groupe` FOREIGN KEY (`ID_groupe`) REFERENCES `groupe` (`ID`),
-  ADD CONSTRAINT `ID_seance_groupe_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID_seance`);
+  ADD CONSTRAINT `ID_seance_groupe_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID`);
 
 --
 -- Contraintes pour la table `seance_salle`
 --
 ALTER TABLE `seance_salle`
   ADD CONSTRAINT `ID_seance_salle_salle` FOREIGN KEY (`ID_salle`) REFERENCES `salle` (`ID`),
-  ADD CONSTRAINT `ID_seance_salle_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID_seance`);
+  ADD CONSTRAINT `ID_seance_salle_seance` FOREIGN KEY (`ID_seance`) REFERENCES `seance` (`ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
