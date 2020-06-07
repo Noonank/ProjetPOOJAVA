@@ -51,10 +51,9 @@ public class EDTadminControl {
         System.out.println("###---------####"+etud_id_grp);
         Seance_groupe seance_grp = Seance_groupeDAO.findgrp(etud_id_grp,conne);
         int util_seance = seance_grp.getIdSeance();
-        System.out.println("###----seancetamer----####"+util_seance);
         Seance ensemblecours = SeanceDAO.find(util_seance,conne);
-        System.out.println("inshalla ca marche"+ensemblecours.getHeureDebut());
-                System.out.println("inshalla ca date ptn de merdere "
+        System.out.println("ca marche"+ensemblecours.getHeureDebut());
+                System.out.println("ca date"
                         + "marche"+ensemblecours.getDate());
 
     }
@@ -80,8 +79,8 @@ public class EDTadminControl {
         int util_seance = seance_grp.getIdSeance();
         System.out.println("###----seancetamer----####"+util_seance);
         Seance ensemblecours = SeanceDAO.find(util_seance,conne);
-        System.out.println("inshalla ca marche"+ensemblecours.getHeureDebut());
-                System.out.println("inshalla ca date      "+ensemblecours.getSemaine()+"    ptn de merdere "
+        System.out.println("i ca marche"+ensemblecours.getHeureDebut());
+                System.out.println("ca date      "+ensemblecours.getSemaine()+"  ouii--"
                         + "marche"+ensemblecours.getDate()+"--------"+ensemblecours.getEtat()+"("
                 +"--------"+ensemblecours.getIdCours()+")"); 
         int idcour = ensemblecours.getIdCours();
@@ -92,7 +91,7 @@ public class EDTadminControl {
         System.out.println("###--[[[[[[[[[[[-- cours ----####"+prof.getNom());
         Groupe grp = recupdatagroupe(ensemblecours,conne);
         
-        System.out.println("###---- groupe sa mer ----####"+grp.getNom());
+        System.out.println("###---- groupe----####"+grp.getNom());
         rangement(conne,ensemblecours,edtmain,cours,prof,grp);
         }
         

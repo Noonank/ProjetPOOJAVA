@@ -106,6 +106,8 @@ public class ManageCours extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(181, 222, 222));
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
         jLabel1.setText("MISE A JOUR DES SEANCES");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -128,6 +130,8 @@ public class ManageCours extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addContainerGap(40, Short.MAX_VALUE)))
         );
+
+        jPanel2.setBackground(new java.awt.Color(187, 217, 217));
 
         jLabel2.setText("ID");
 
@@ -446,6 +450,8 @@ public class ManageCours extends javax.swing.JFrame {
                             .addComponent(seance_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

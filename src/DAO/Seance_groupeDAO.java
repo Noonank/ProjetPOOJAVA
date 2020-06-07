@@ -134,7 +134,7 @@ public boolean update(Seance_groupe obj, Connection conn) throws SQLException {
         ResultSet.TYPE_SCROLL_INSENSITIVE, 
         ResultSet.CONCUR_READ_ONLY);
       ResultSet result = st.executeQuery("SELECT * FROM seance_groupes WHERE ID_groupe = " + id_grp); 
-      System.out.println("je suis la tete de bite");
+     
       if(result.first()){
         seance_groupeDAO = new Seance_groupe( 
                 result.getInt("ID_seance"),id_grp);
@@ -168,7 +168,7 @@ public boolean update(Seance_groupe obj, Connection conn) throws SQLException {
         ResultSet.TYPE_SCROLL_INSENSITIVE, 
         ResultSet.CONCUR_READ_ONLY);
       ResultSet result = st.executeQuery("SELECT * FROM seance_groupes WHERE ID_seance = " + id); 
-      System.out.println("je suis la tete de bite");
+      
       if(result.next()!=false){
         seance_groupeDAO = new Seance_groupe(id,
                 result.getInt("ID_groupe")); }       
